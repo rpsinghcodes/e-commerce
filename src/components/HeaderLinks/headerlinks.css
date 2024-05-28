@@ -1,0 +1,12 @@
+.nav-item > a{
+  color: #fff;
+  font-weight: 600;
+  
+}
+.bg-warning{
+  border-radius: 10px;
+  font-weight: 600;
+}
+a:hover{
+  text-decoration: underline;
+}

@@ -1,0 +1,23 @@
+.socialMediaIcons{
+  color: white;
+}
+.bi-facebook:hover{
+  color:#006048;
+  transition:ease-in 1s;
+  cursor:pointer;
+}
+.bi-twitter:hover{
+  color:#006048;
+  transition:ease-in 1s;
+  cursor:pointer;
+}
+.bi-person-wheelchair:hover{
+  color:#006048;
+  transition:ease-in 1s;
+  cursor:pointer;
+}
+.bi-instagram:hover{
+  color:#006048;
+  transition:ease-in 1s;
+  cursor:pointer;
+}

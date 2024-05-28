@@ -1,0 +1,21 @@
+.navbar-background{
+    background-color:#006045;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Base styles for the TopBar */
+
+  
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+  }
+  
+ 
+  
+  
+  

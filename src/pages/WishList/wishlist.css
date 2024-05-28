@@ -1,0 +1,95 @@
+/* wishlist.css */
+/* .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  } */
+  
+  .cart-items {
+    margin-top: 20px;
+  }
+  
+  .cart-items-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .j-heading {
+    font-size: 2rem;
+    color: var(--color-black);
+  }
+  
+  .cart-items-empty {
+    text-align: center;
+    font-size: 1.2rem;
+    color: gray;
+  }
+  
+  .wishlist-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 450px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 5px 0px 10px 0px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .wishlist-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  
+  .product-name {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .card-btn {
+    display: inline-block;
+    width: 48%;
+    padding: 10px;
+    margin: 10px 1%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .card-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .card-bottom {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .orgPrice {
+    font-size: 1rem;
+    color: #888;
+    text-decoration: line-through;
+  }
+  
+  .offer {
+    font-size: 1rem;
+    color: red;
+    margin-left: 10px;
+  }
+  

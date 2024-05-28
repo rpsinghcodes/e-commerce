@@ -1,0 +1,16 @@
+.sign-up-form{
+  position: relative;
+  top: -50px;
+  width: 650px;
+}
+
+.sign-up-form label{
+    visibility: hidden;
+}
+
+.sign-up-form textarea{
+    visibility: hidden;
+}
+.seller-form input{
+    border-radius: 10px;
+}

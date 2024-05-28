@@ -1,0 +1,163 @@
+.about-card {
+    display: flex;
+    justify-content: center;
+}
+
+.about-card-icons {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.about-container {
+
+    width: 1200px;
+    position: relative;
+    left: 100px;
+    top: 25px;
+}
+
+.icon-container {
+    display: grid;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.about-card-icon-text>h5 {
+    font-size: 25px;
+    margin: 10px 10px;
+}
+
+.about-card-icon-text>p {
+    color: grey;
+    margin: 10px 10px;
+}
+
+.about-card-container {
+    display: grid;
+    gap: 10%;
+}
+
+.about-card-img>img {
+    height: 70vh;
+    width: 585px;
+}
+
+.about-card-text {
+    padding: 10px 40px;
+}
+
+.about-card-text h2 {
+    font-size: 35px;
+    font-weight: 900;
+}
+
+.about-card-text p {
+    color: grey;
+    font-weight: 500;
+    overflow: hidden;
+}
+
+.bi-truck,
+.bi-shield-lock,
+.bi-phone,
+.bi-percent {
+    font-size: 40px;
+    color: #006048;
+}
+
+.div {
+    margin-top: 300px;
+    height: 90vh;
+    margin-left: 150px;
+}
+/* media query for about start */
+/* @media (min-width: 601px) and (max-width: 1024px){
+    .about-container{
+        gap: 10px;
+        display: grid;
+    }
+.about-card{
+    display: grid;
+    width: 35%;
+     height: 110vh; 
+}
+.about-card-text h2{
+    font-size: 25px;
+}
+
+.about-card-img>img {
+    height: 100%;
+   width: 100%;
+    align-items: center;
+    object-fit: cover;
+}
+
+.about-slider{
+    height: 100vh;
+    margin-top: 600px;
+    width: 500px;
+   position: relative;
+   right: 100px;
+    
+}
+
+.slider{
+    width: 10%;
+    width: 250px;
+    margin: 10px;
+}
+} */
+/* end */
+/* About Slider css  start*/
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    margin-left: -30px;
+  position: relative;
+  top: 30px;
+}
+
+.slider-card {
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.slider {
+    margin: 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+   width: 350px;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.slider-card-header:hover {
+    background-color: #006048;
+    transition: ease-in 1s;
+    color: #f7f7f7;
+}
+
+.slider-card-header {
+    background-color: #f7f7f7;
+    height: 35vh;
+    border-radius: 10px;
+
+}
+
+.slider-card-body {
+    height: 20vh;
+}
+
+.slider>img {
+    position: relative;
+    top: -30px;
+    left: 140px;
+    box-shadow: 2px 2px 4px rgba(135, 131, 131, 0.4);
+    border-radius: 50px;
+}

@@ -1,0 +1,143 @@
+/* .navbar {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+} */
+
+.nav-items {
+  display: flex;
+  justify-content: space-evenly;
+  color: black;
+  align-items: center;
+  text-align: center;
+} 
+
+/* .nav-items-right {
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  align-items: center;
+  text-align: center;
+} */
+
+.arrow-btn {
+  border: none;
+  background-color: #006045;
+  padding: 10px 30px;
+  color: #ffff;
+  border-radius: 3px;
+}
+
+.arrow-btn:hover {
+  border: 1px solid #006045;
+  background-color: #f9f9f9;
+  color: black;
+  transition: ease-in 1s;
+}
+
+.bi-cart-fill,
+.bi-heart-fill {
+  font-size: 27px;
+  position: relative;
+  top:0;
+  color: #006045;
+}
+
+
+ 
+/* .nav-items-right {
+  list-style: none;
+  font-weight: normal;
+  align-items: center;
+  text-align: center;
+  position: relative;
+
+} */
+
+/* .nav-items-right a {
+  font-weight: normal;
+}
+
+.nav-items a {
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.navbar-left {
+  width: 50%;
+} */
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  cursor: pointer;
+}
+.count{
+  color: rgb(231, 219, 219);
+  position: relative;
+  top: -23px;
+  font-size: 13px;
+  padding: 4px;
+  background-color: rgb(21, 20, 20);
+border-radius: 90%;
+padding-top: 1px;
+padding-bottom: 1px;
+right: 2px
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.bi-cart:hover,
+.bi-heart:hover {
+  color: #006045;
+  transition: ease-in 1s;
+  font-size: 15px;
+  border: 1px solid #ffff;
+  background-color: #006045;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-.dropdown-content {
+  transition: ease-in 1s;
+  cursor: pointer;
+}
+
+.navbar-left .nav-items a:hover {
+  color: #006045;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+
+
+/* Tablets (landscape) and small laptops */
+@media screen and (min-width: 1024px) {
+  .navbarRight {
+    margin-left: 40%;
+    cursor: pointer;
+  }
+}
+

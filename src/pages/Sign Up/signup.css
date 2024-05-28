@@ -1,0 +1,16 @@
+.sign-up-form form label{
+    visibility: hidden;
+
+}
+.sign-up-form form textarea{
+    visibility: hidden;
+}
+
+.form-btm{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -40px;
+}
+

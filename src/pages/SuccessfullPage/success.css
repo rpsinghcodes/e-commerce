@@ -1,0 +1,53 @@
+/* success.css */
+
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    background-color: #f8f9fa; /* Light background color */
+    padding: 20px;
+  }
+  .success-card > img {
+    width: 350px;
+    position: relative;
+    left: -20px;
+  }
+  
+  .success-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
+    max-width: 400px; /* Limit max width */
+    width: 100%; /* Full width of the container */
+  }
+  
+  .success-card h4 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .success-card i {
+    font-size: 3rem;
+    color: #28a745; /* Green color for the icon */
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .success-card {
+      padding: 20px;
+      h4 {
+        font-size: 1.2rem;
+      }
+      i {
+        font-size: 2.5rem;
+      }
+    }
+  }
+  

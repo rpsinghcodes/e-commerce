@@ -1,0 +1,102 @@
+.TrackingOrder{
+    margin-right: 100px;
+}
+
+.track-order img{
+    position: relative;
+    width: 500px;
+    top: 50px;
+}
+
+
+@media (min-width: 1024px) {
+    .form-control {
+      width: 45%;
+    }
+  
+    .track-order img {
+      width: 45%;
+    }
+  }
+  
+  /* Medium devices (tablets, 768px to 1023px) */
+  /* @media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+      width: 90%;
+    }
+  
+    .form-control {
+      width: 50%;
+    }
+  
+    .track-order img {
+      width: 45%;
+    }
+  
+    .track-order {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .form-control {
+      width: 80%;
+    }
+  
+    .track-order img {
+      width: 80%;
+      margin-top: 20px;
+    }
+  }
+   */
+  /* Small devices (landscape phones, 480px to 767px) */
+  /* @media (min-width: 480px) and (max-width: 767px) {
+    .container {
+      width: 95%;
+    }
+  
+    .form-control {
+      width: 70%;
+    }
+  
+    .track-order {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .track-order img {
+      width: 70%;
+      margin-top: 20px;
+    }
+  }
+   */
+  /* Extra small devices (portrait phones, less than 480px) */
+  /* @media (max-width: 479px) {
+    .container {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .form-control {
+      width: 90%;
+      padding: 10px;
+    }
+  
+    .track-order {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .track-order img {
+      width: 90%;
+      margin-top: 15px;
+    }
+  
+    .form-control input {
+      padding: 8px;
+    }
+  
+    .form-control button {
+      padding: 8px 15px;
+      font-size: 14px;
+    }
+  } */
