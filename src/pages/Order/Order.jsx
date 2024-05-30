@@ -1,11 +1,9 @@
-import { jwtDecode } from "jwt-decode";
-import { useContext, useEffect, useState } from "react";
+import { useContext,  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getCookie } from "../../helpers/utils";
 import {  toast } from "react-toastify";
-import axios from "axios";
-import "./order.css";
+
 import { CartContext } from "../../context/context";
+import "./order.css";
 
 export default function Order() {
   const {user} = useContext(CartContext)

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Footer from "../../components/Footer/Footer";
 import "./login.css";
@@ -8,7 +8,23 @@ import { CartContext } from "../../context/context";
 
 const SellerLogin = () => {
   const { user, login,  alertMessage} = useContext(CartContext); 
-  const navigate =  useNavigate()
+  const navigate =  useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({ 
+    email: false,
+    password: false,
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+    if (value.trim() !== "") {
+      setErrors({ ...errors, [name]: false });
+    }
+  };
 
   useEffect(() => {
    if(user.isSellerLogedIn) {
@@ -18,6 +34,13 @@ const SellerLogin = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    const newErrors = {};
+    for (const key in formData) {
+      if (formData[key].trim() === "") {
+        newErrors[key] = true;
+      }
+    }
+    setErrors(newErrors);
     const fd = new FormData(event.target);
     const email = fd.get('email')
     const password = fd.get('password')
@@ -38,15 +61,19 @@ const SellerLogin = () => {
           type="text"
           placeholder="Email Or UserName"
           name="email"
-          required
+          onChange={handleInputChange}
+          
         />
+        {errors.email && <span style={{color:"red"}}>Write Email</span>}
         <label htmlFor="">Password</label>
         <input
           type="password"
           placeholder="Password"
+          onChange={handleInputChange}
           name="password"
-          required
+          
         />
+        {errors.password && <span style={{color:"red"}}>Write Password</span>}
         <button>Sign In</button>
       </form>
       </div>

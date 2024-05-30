@@ -1,4 +1,3 @@
-import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 export function getCookie(name) {
@@ -12,52 +11,6 @@ export function getCookie(name) {
   return null;
 }
 
-export async  function  getUserCartProduct(token) {
-  try {
-    const decodedData = jwtDecode(token);
-    const user_id = decodedData.data[0].id;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await axios.post("http://localhost:4000/cart", { user_id }, config);
-    if (!response.data.products) {
-      return [];
-    } else {
-      console.log(response.data.products);
-      return response.data.products;
-    }
-  }catch(err) {
-    console.log('err', err)
-    }
-   
-}
-
-export async  function getUserWishListProducts(token) {
-  
-  try {
-    const decodedData = jwtDecode(token);
-    const user_id = decodedData.data[0].id;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await axios.post("http://localhost:4000/wishlist", { user_id }, config);
-
-    if (!response.data.products) {
-      return [];
-    } else {
-      console.log(response.data.products);
-      return response.data.products;
-    }
-  }catch(err) {
-    console.log('err', err);
-    return [];
-  }
-  
-}
 
 export function isUserLogedIn() {
   const token = getCookie("token");
