@@ -1,19 +1,71 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/context";
+import { Order } from "../../http/http";
 
 export default function Billing() {
-  const { user } = useContext(CartContext);
+  const { user, cartProducts } = useContext(CartContext);
   const navigate = useNavigate()
   if (!user.isUserLogedIn) {
     navigate('/');
   }
-  const handleForm = (event) => {
+  const handleForm = async (event) => {
     event.preventDefault();
+    // console.log('cartProducts: ', cartProducts);
+    console.log(cartProducts);
+    const product =  cartProducts.map(products => (
+      {product_id: products.id, quantity: products.quantity, seller_id: products.seller_id, product_name: products.title, price: products.price }
+      // details.push({orders: [{product_id: products.id, quantity: products.quantity, seller_id: products.seller_id}]})
+    ))
+
+    // console.log('details: ', details);
+
+    // send seller_id, product_id, quantity and userdetails that provided in this component
+    // data should be in such manner 
+
+    /*
+    what currently i have :
+    [
+    {...}
+    ]
+
+    result that i want: 
+    [orders: [{
+      product_id: 2,
+      seller_id: 4,
+      quantity: 2,
+    }, {
+    product_id: 2,
+      seller_id: 4,
+      quantity: 2
+    }],
+    address: {name:'', number: ''},
+    modeOfPayment: paid/unpaid,
+    ]
+
+    */
+
     const fd = new FormData(event.target);
     const Fdata = Object.fromEntries(fd.entries());
-    console.log(Fdata);
-    navigate(Fdata.modeOfPayment === 'prepaid' ? '/order' : '/success');
+    // console.log(Fdata);
+    // details.push(Fdata);
+    // console.log(details);
+    let details;
+    if(Fdata.modeOfPayment !== 'prepaid') {
+      details = {
+        product: product,
+        info: Fdata,
+        modeOfPayment: "COD"
+      }
+      console.log(details)
+
+      // send the data to backend
+    }
+    const isSended = await Order(details, 2);
+    console.log(isSended);
+    if(isSended) {
+      navigate(Fdata.modeOfPayment === 'prepaid' ? '/order' : '/success');
+    }
 
   };
   return (
@@ -22,11 +74,11 @@ export default function Billing() {
       <form className="payment-form" onSubmit={handleForm}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
-          <input type="text" id="cardNumber" name="name" required />
+          <input type="text" id="cardNumber" defaultValue='rahul' name="name" required />
         </div>
         <div className="form-group">
           <label htmlFor="mobileNumber">Mobile Number</label>
-          <input type="" name="mobileNumber" required />
+          <input type="text" name="mobileNumber" defaultValue='92384729' required />
         </div>
         <div className="form-group">
           <label htmlFor="address">Address</label>
@@ -35,12 +87,13 @@ export default function Billing() {
             rows="2"
             cols="50"
             name="address"
+            defaultValue='sldkjfsd'
             required
           ></textarea>
         </div>
         <div className="form-group">
           <label htmlFor="pincode">Pincode</label>
-          <input type="number" name="pincode" required />
+          <input type="number" name="pincode" defaultValue={249193} required />
         </div>
         <div className="form-group">
           <label htmlFor="modeOfPayment">Mode Of Payment</label>

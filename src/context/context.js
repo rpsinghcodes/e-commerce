@@ -24,6 +24,8 @@ import {
   deleteWishListProduct,
   updateUserCart,
   updateWishList,
+  fetchdeleteProduct,
+  getOrder,
 } from "../http/http";
 
 export const CartContext = createContext({
@@ -49,6 +51,7 @@ export const CartContext = createContext({
   setSellerProducts: () => {},
   alertMessage: {},
   editProduct: (data) => {},
+  orders: [],
 });
 
 export default function CartProvider({ children }) {
@@ -58,6 +61,7 @@ export default function CartProvider({ children }) {
   const [sellerProducts, setSellerProducts] = useState([]);
   const [wishListProducts, setWishListProducts] = useState([]);
   const [wishListLength, setWishListLength] = useState(0);
+  const [orders, setOrder] = useState([]);
   const [user, setUser] = useState({
     userName: "",
     isUserLogedIn: false,
@@ -84,7 +88,8 @@ export default function CartProvider({ children }) {
       if (isTokenValid()) {
         // Setting user state to seller.
         const decodedData = jwtDecode(token);
-        const name = decodedData?.data[0]?.owner_name;
+        const name = decodedData?.data[0]?.seller_name;
+        const seller_id = decodedData?.data[0]?.id;
         setUser({
           isSellerLogedIn: true,
           userName: name,
@@ -98,6 +103,12 @@ export default function CartProvider({ children }) {
           setSellerProducts(fetchSellerProduct);
         };
         fetchSellerProductFn();
+
+        const fetchSellerOrder = async () => {
+        const sellerOrders =   await  getOrder(seller_id)
+        setOrder(sellerOrders?.data);
+        }
+        fetchSellerOrder()
       }
     }
     // is User Loged In
@@ -136,18 +147,24 @@ export default function CartProvider({ children }) {
       }
     } else if (userType === "seller") {
       const data = await fetchUserLogin(email, password, "seller");
-      console.log(data);
+      // console.log(data);
+      
       if (data.success) {
         setCookie("token", data.token);
         const userData = jwtDecode(data.token);
         toast.success(data.message);
-        console.log(userData);
         setUser({
           isUserLogedIn: false,
           isSellerLogedIn: true,
-          userName: userData.data[0].owner_name,
+          userName: userData.data[0].seller_name,
         });
         setSellerProducts(data?.sellerProducs);
+        const fetchSellerOrder = async () => {
+          const sellerOrders =   await  getOrder(data?.sellerProducs[0]?.seller_id)
+          setOrder(sellerOrders?.data);
+          }
+          fetchSellerOrder()
+        
         navigate("/seller");
       } else {
         toast.error(data.message);
@@ -181,10 +198,10 @@ export default function CartProvider({ children }) {
 
     const data = await postAddToCart(product);
 
-    if (data.success) {
+    if (data?.success) {
       toast.success(data?.message);
       setCartProducts(data?.updatedCart);
-    } else if (!data.success) {
+    } else if (!data?.success) {
       toast.error(data?.message);
     }
   };
@@ -221,36 +238,6 @@ export default function CartProvider({ children }) {
       setWishListProducts(data?.updatedWishList);
     } else if(!data?.success) {
       toast.error(data?.message);
-    }
-    const token = getCookie("token");
-    if (false) {
-      const tokenData = jwtDecode(token);
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`, // Include user ID from JWT token in the Authorization header
-        },
-      };
-      const toSend = {
-        user_id: tokenData.data[0].id,
-        product_id: product.id,
-      };
-      axios
-        .post("http://localhost:4000/add-to-whishlist", toSend, config)
-        .then((response) => {
-          // alert(response.data.message);
-          toast.success(response?.data?.message);
-          console.log("add-to-wishList: ", response?.data?.updatedWishList);
-          const updatedWishList = response?.data?.updatedWishList;
-          setWishListProducts(updatedWishList);
-          setWishListLength(updatedWishList.length);
-        })
-        .catch((err) => {
-          alert("Try again later.");
-          console.log(err);
-        });
-      console.log("userID: ", tokenData.data[0].id);
-
-      console.log("id :", product);
     }
   };
   const logout = async () => {
@@ -295,21 +282,15 @@ export default function CartProvider({ children }) {
 
   // Methods for seller
   const deleteProduct = async (id, user_id) => {
-    const token = getCookie("token");
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`, // Include user ID from JWT token in the Authorization header
-      },
-    };
-
-    axios
-      .post("http://localhost:4000/deleteproduct", { id, user_id }, config)
-      .then((response) => {
-        toast.success(response?.data?.message);
-        setSellerProducts(response?.data?.updatedSellerProducts);
-        setProducts(response?.data?.data);
-      })
-      .catch((err) => alert("Something Went Wrong."));
+    const data = await fetchdeleteProduct(id, user_id);
+    if(data.success) {
+      toast.success(data?.message);
+      setSellerProducts(data?.sellerProducts);
+      setProducts(data?.updatedProducts);
+    } else {
+      toast.error(data?.message);
+    }
+    
   };
 
   return (
@@ -333,6 +314,7 @@ export default function CartProvider({ children }) {
         setSellerProducts,
         alertMessage,
         editProduct,
+        orders
       }}
     >
       <ToastContainer autoClose={2500} />

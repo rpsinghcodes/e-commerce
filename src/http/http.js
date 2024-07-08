@@ -285,3 +285,76 @@ export async function updateWishList(product) {
   }
   }
 }
+
+export async function fetchdeleteProduct(id, user_id) {
+  try {
+    const token = getCookie("token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include user ID from JWT token in the Authorization header
+      },
+    };
+
+    const response = await axios.post("http://localhost:4000/deleteproduct", { id, user_id }, config);
+    if(response?.data?.success) {
+      return {
+        success: true,
+        message: response?.data?.message,
+        sellerProducts: response?.data?.updatedSellerProducts,
+        updatedProducts: response?.data?.data
+      }
+    }
+  }catch (err) {
+    console.log(err); 
+    return {
+        success: false,
+        message: "Something went wrong."
+    }
+  }
+  
+}
+
+export async function Order(data, user_id) {
+  try {
+    const token = getCookie("token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include user ID from JWT token in the Authorization header
+      },
+    };
+
+    const response = await axios.post("http://localhost:4000/order", { data, user_id }, config);
+    if(response?.data?.success) {
+      
+      return {
+        success: true
+      }
+    }
+  }catch (err) {
+    console.log(err); 
+    return {
+        success: false,
+        message: "Something went wrong."
+    }
+  }
+  
+}
+
+export async function getOrder(seller_id) {
+  try {
+    const token = getCookie("token");
+    const response = await axios.get(`http://localhost:4000/order/token/${token}/seller_id/${seller_id}`);
+    if(response?.data?.success) {
+      return {
+        success: true,
+        data: response?.data?.data
+      }
+    }
+  }catch(error) {
+    console.log(error);
+    return {
+      success: false,
+      message: "Something went wrong."
+    }
+  }
+}

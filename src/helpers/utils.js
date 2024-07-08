@@ -18,7 +18,7 @@ export function isUserLogedIn() {
     return false;
   }
   const data = jwtDecode(token);
-  if (data?.data[0]?.owner_name) {
+  if (data?.data[0]?.seller_name) {
     return false;
   }
 
@@ -55,7 +55,7 @@ export function isSellerLogedIn() {
   const token = getCookie("token");
   if (isTokenValid()) {
     const data = jwtDecode(token);
-    if (data?.data[0]?.owner_name) {
+    if (data?.data[0]?.seller_name) {
       return true;
     } else {
       return false;

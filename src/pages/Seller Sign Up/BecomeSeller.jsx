@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 const BecomeSeller = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    owner_name: "",
+    seller_name: "",
     business_name: "",
     email: "",
     username: "",
@@ -16,7 +16,7 @@ const BecomeSeller = () => {
     description: "",
   });
   const [errors, setErrors] = useState({
-    owner_name: false,
+    seller_name: false,
     business_name: false,
     email: false,
     username: false,
@@ -70,15 +70,15 @@ const BecomeSeller = () => {
           <h3>Basic Info</h3>
           <label htmlFor="">Owner Name</label>
           <input
-            className={errors.owner_name ? "border error" : "border"}
+            className={errors.seller_name ? "border error" : "border"}
             type="text"
             placeholder="Owner Name"
-            name="owner_name"
-            value={formData.owner_name}
+            name="seller_name"
+            value={formData.seller_name}
             onChange={handleInputChange}
             
           />
-          {errors.owner_name && <span style={{color:"red"}}>Write Name</span>}
+          {errors.seller_name && <span style={{color:"red"}}>Write Name</span>}
           <label htmlFor="">Business Name</label>
           <input
             className={errors.business_name ? "border error" : "border"}

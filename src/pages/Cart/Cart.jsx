@@ -70,7 +70,7 @@ const Cart = () => {
                   </div>
                 </div>
               ))}
-              <button className="check-btn">
+              <button className="check-btn" onClick={() => navigate('/billing')}>
                 <Link to="/billing" className="text-dark">
                   CheckOut
                   <p className="card-text text-dark">TotalPrice: {calculateTotalPrice(cartProducts)}</p>

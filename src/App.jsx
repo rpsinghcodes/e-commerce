@@ -19,13 +19,14 @@ import SellerLogin from "./pages/Seller Login/SellerLogin.jsx";
 import Seller from "./pages/Seller/Seller.jsx";
 import AddProduct from "./pages/AddProduct/AddProduct.jsx";
 import EditProduct from "./pages/EditProduct/EditProduct.jsx";
-import Order from "./pages/Order/Order.jsx";
+import Payment from "./pages/Payment/Payment.jsx";
 import SellerProduct from "./pages/SellerProduct/SellerProduct.jsx";
 import ContactUs from "./pages/Contact/ContactUs.jsx";
 import Blog from "./pages/Blog/Blog.jsx";
 import Success from "./pages/SuccessfullPage/Success.jsx";
 import About from "./pages/About/About.jsx";
 import Billing from "./pages/Billing/Billing.jsx";
+import Order from "./pages/Order/Order.jsx";
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
         <Route path="/billing" element={<Billing />} />
         <Route path="/seller" element={<Seller />} />
         <Route path="/editproduct/:id" element={<EditProduct />} />
+        <Route path="/payment" element={<Payment />} />
         <Route path="/order" element={<Order />} />
         <Route path="/product/:sellerName" element={<SellerProduct />} />
         <Route path="/contact" element={<ContactUs />} />

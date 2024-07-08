@@ -45,7 +45,7 @@ export default function AddProduct() {
     if (image.length === 0) {
       window.alert("Upload image");
     } else {
-      data.sellerName = sellerData.data[0].owner_name;
+      data.sellerName = sellerData.data[0].seller_name;
       editProduct(data);
     }
   };
