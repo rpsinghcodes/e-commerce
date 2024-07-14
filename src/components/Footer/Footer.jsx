@@ -50,7 +50,7 @@ const Footer = () => {
             <div className="col-lg-3 mt-3">
               <ul>
                 <img
-                  src="https://safecart.bytesed.com/assets/uploads/media-uploader/image-3601699785184.png"
+                  src="my-cart.png"
                   alt=""
                 />
                 <p style={{fontWeight:"normal", color:"#f1f1f1", fontSize:'18px', marginTop:"20px"}}>
@@ -83,9 +83,9 @@ const Footer = () => {
             <div className="footer-info col-lg-3 bottom mt-3">
               <ul>
                 <p style={{ fontWeight: "600", fontSize:"18px" }}>Store info</p>
-                <p className="bi bi-geo-alt"style ={{fontWeight:"400"}}> &nbsp;Dhaka, Bangladesh</p>
-                <p className="bi bi-phone-fill "style ={{fontWeight:"400"}}> 0113213131322</p>
-                <p className="bi bi-envelope"style ={{fontWeight:"400"}}>  support@safecart.com</p>
+                <p className="bi bi-geo-alt"style ={{fontWeight:"400"}}> &nbsp;Uttarkashi, Uttrakhand</p>
+                <p className="bi bi-phone-fill "style ={{fontWeight:"400"}}> +91 8650142287</p>
+                <p className="bi bi-envelope"style ={{fontWeight:"400"}}>  support@mycart.com</p>
               </ul>
             </div>
 

@@ -27,6 +27,7 @@ import Success from "./pages/SuccessfullPage/Success.jsx";
 import About from "./pages/About/About.jsx";
 import Billing from "./pages/Billing/Billing.jsx";
 import Order from "./pages/Order/Order.jsx";
+import MyOrder from "./pages/MyOrder/MyOrder.jsx";
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/editproduct/:id" element={<EditProduct />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/order" element={<Order />} />
+        <Route path="my-orders" element={<MyOrder />} />
         <Route path="/product/:sellerName" element={<SellerProduct />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/blog" element={<Blog />} />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { createContext, useState, useEffect } from "react";
 import {
   deleteCookie,
@@ -8,7 +8,6 @@ import {
   isTokenValid,
   isUserLogedIn,
   setCookie,
-
 } from "../helpers/utils";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -26,6 +25,7 @@ import {
   updateWishList,
   fetchdeleteProduct,
   getOrder,
+  getUserOrder,
 } from "../http/http";
 
 export const CartContext = createContext({
@@ -52,16 +52,24 @@ export const CartContext = createContext({
   alertMessage: {},
   editProduct: (data) => {},
   orders: [],
+  billing: { product: [], info: {}, modeOfPayment: "" },
+  updateBilling: (product, info, modeOfPayment) => {},
+  userOrder: [],
+  setOrder: () =>{},
+  setUserOrder: () => {}
+
 });
 
 export default function CartProvider({ children }) {
   const navigate = useNavigate();
+  const [billing, setBilling] = useState({});
   const [products, setProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [sellerProducts, setSellerProducts] = useState([]);
   const [wishListProducts, setWishListProducts] = useState([]);
   const [wishListLength, setWishListLength] = useState(0);
   const [orders, setOrder] = useState([]);
+  const [userOrder, setUserOrder] = useState([]);
   const [user, setUser] = useState({
     userName: "",
     isUserLogedIn: false,
@@ -80,8 +88,12 @@ export default function CartProvider({ children }) {
     const token = getCookie("token");
     if (isTokenValid()) {
       const decodedData = jwtDecode(token);
-            
-      setUser(({isSellerLogedIn: false,  isUserLogedIn: true, userName: decodedData.data[0].name }));
+
+      setUser({
+        isSellerLogedIn: false,
+        isUserLogedIn: true,
+        userName: decodedData.data[0].name,
+      });
     }
 
     if (isSellerLogedIn()) {
@@ -105,23 +117,35 @@ export default function CartProvider({ children }) {
         fetchSellerProductFn();
 
         const fetchSellerOrder = async () => {
-        const sellerOrders =   await  getOrder(seller_id)
-        setOrder(sellerOrders?.data);
-        }
-        fetchSellerOrder()
+          const sellerOrders = await getOrder(seller_id);
+          setOrder(sellerOrders?.data);
+        };
+        fetchSellerOrder();
       }
     }
     // is User Loged In
     if (isUserLogedIn()) {
       const fetchUserData = async () => {
+
         const cartProducts = await getUserCartProduct(token);
         setCartProducts(cartProducts);
+
         const wishListProducts = await getUserWishListProducts(token);
         setWishListProducts(wishListProducts);
+
+        const data = await getUserOrder();
+        setUserOrder(data?.data);
       };
       fetchUserData();
+
     }
   }, []);
+
+  const updateBilling = (product, info, modeOfPayment) => {
+    setBilling({
+      product,info, modeOfPayment
+    })
+  }
 
   const login = async (userType, email, password) => {
     if (userType === "buyer") {
@@ -135,6 +159,8 @@ export default function CartProvider({ children }) {
         const wishListProducts = await getUserWishListProducts(data.token);
         setWishListProducts(wishListProducts);
         const userData = jwtDecode(data.token);
+        const userOrder = await getUserOrder();
+        setUserOrder(userOrder?.data);
         toast.success(data.message);
         setUser({
           isSellerLogedIn: false,
@@ -148,7 +174,7 @@ export default function CartProvider({ children }) {
     } else if (userType === "seller") {
       const data = await fetchUserLogin(email, password, "seller");
       // console.log(data);
-      
+
       if (data.success) {
         setCookie("token", data.token);
         const userData = jwtDecode(data.token);
@@ -160,11 +186,13 @@ export default function CartProvider({ children }) {
         });
         setSellerProducts(data?.sellerProducs);
         const fetchSellerOrder = async () => {
-          const sellerOrders =   await  getOrder(data?.sellerProducs[0]?.seller_id)
+          const sellerOrders = await getOrder(
+            data?.sellerProducs[0]?.seller_id
+          );
           setOrder(sellerOrders?.data);
-          }
-          fetchSellerOrder()
-        
+        };
+        fetchSellerOrder();
+
         navigate("/seller");
       } else {
         toast.error(data.message);
@@ -218,13 +246,13 @@ export default function CartProvider({ children }) {
 
   const updateCart = async (product_id, update) => {
     const data = await updateUserCart(product_id, update);
-    if(data.success) {
+    if (data.success) {
       toast.success(data?.message);
       setCartProducts(data?.updatedCart);
-    } if(!data?.success) {
+    }
+    if (!data?.success) {
       toast.error(data?.message);
     }
-
   };
 
   const addToWishList = async (product) => {
@@ -233,10 +261,10 @@ export default function CartProvider({ children }) {
       navigate("/login");
     }
     const data = await updateWishList(product);
-    if(data?.success) {
+    if (data?.success) {
       toast.success(data?.message);
       setWishListProducts(data?.updatedWishList);
-    } else if(!data?.success) {
+    } else if (!data?.success) {
       toast.error(data?.message);
     }
   };
@@ -248,6 +276,8 @@ export default function CartProvider({ children }) {
     setWishListLength(0);
     setWishListProducts([]);
     setCartProducts([]);
+    setUserOrder([]);
+    setOrder([]);
     deleteCookie("token", "delete-this");
     toast.success("User Logout successfully.");
   };
@@ -283,14 +313,13 @@ export default function CartProvider({ children }) {
   // Methods for seller
   const deleteProduct = async (id, user_id) => {
     const data = await fetchdeleteProduct(id, user_id);
-    if(data.success) {
+    if (data.success) {
       toast.success(data?.message);
       setSellerProducts(data?.sellerProducts);
       setProducts(data?.updatedProducts);
     } else {
       toast.error(data?.message);
     }
-    
   };
 
   return (
@@ -314,10 +343,15 @@ export default function CartProvider({ children }) {
         setSellerProducts,
         alertMessage,
         editProduct,
-        orders
+        orders,
+        setOrder,
+        billing,
+        updateBilling,
+        userOrder,        
+        setUserOrder
       }}
     >
-      <ToastContainer autoClose={2500} />
+      <ToastContainer autoClose={1000} />
       {children}
     </CartContext.Provider>
   );

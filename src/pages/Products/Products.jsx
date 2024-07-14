@@ -47,7 +47,7 @@ const {products, addToCart, addToWishList, user} =  useContext(CartContext);
 
   return (
     <div className="mt-5"> 
-      <h2 className="" style={{marginLeft:"20px"}}>View all products</h2>
+      <h2  style={{marginLeft:"20px"}}>View all products</h2>
       <div>
         <div className="container">
           <div className="row">
@@ -84,7 +84,7 @@ const {products, addToCart, addToWishList, user} =  useContext(CartContext);
                     fontWeight: "400", position:"relative", top:"-50px"
                   }}
                 >
-                  ${item.price}.00
+                  ${item.price + (item.price*30/100)}.00
                 </p>
               </div>
 
@@ -95,9 +95,7 @@ const {products, addToCart, addToWishList, user} =  useContext(CartContext);
                style ={{position:"relative", top:"-60px"}} >
                   Add to Cart
                 </button> }
-               {/*  <button  style={{marginLeft:'41px', position:"relative", top:"-60px"}}className="product-card-btn-icon" >
-                  <i className="bi bi-repeat"></i>
-                </button> */}
+                
                 {user.isSellerLogedIn ? undefined :  <button
                   className="product-card-btn-icon"
                   onClick={() => addToWishList(item)}

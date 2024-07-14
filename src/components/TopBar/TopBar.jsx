@@ -25,7 +25,7 @@ const TopBar = () => {
           <div className="container-fluid  navbar-background d-flex  justify-content-between  p-2 d-none   d-lg-block ">
             <div className="row">
               <div className="d-flex align-items-center col-lg-6">
-                <Icons />
+                
               </div>
 
               <div className="col-lg-6">
@@ -45,18 +45,6 @@ const TopBar = () => {
               </div>
             </div>
           </div>
-
-          {/* 
-    <div className='container-fluid  navbar-background d-flex flex-row  justify-content-between w-100  p-2 d-none  d-lg-none' >
-     <div>
-     <Icons/>
-     </div>
-     <div>
-     <HeaderLinks />
-     </div>
-
-
-  </div> */}
         </>
       )}
     </>

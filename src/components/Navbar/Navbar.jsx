@@ -5,7 +5,7 @@ import "./navbar.css";
 import SearchBar from "../SearchBar/SearchBar";
 
 const Navbar = () => {
-  const { cartProducts, wishListProducts, user, logout, orders } = useContext(CartContext);
+  const { cartProducts, wishListProducts, user, logout, orders, userOrder } = useContext(CartContext);
   return (
    
     <nav className="navbar navbar-expand-lg navbar-warning bg-light">
@@ -75,21 +75,30 @@ const Navbar = () => {
             {user.isUserLogedIn && <><li style={{ background: "" }}>
               <Link to="/wishlist">
                 <i className="bi bi-heart-fill "></i>
-                <span className= "count">{wishListProducts.length }</span>
+                <span className= "count">{wishListProducts?.length }</span>
               </Link>
             </li>
             <li>
               <Link to="/cart">                
-                <i className="bi bi-cart-fill "></i>
-                <span className="count">{cartProducts.length}</span>
+                <i className="bi bi-cart-fill " />
+                <span className="count">{cartProducts?.length}</span>
               </Link>
-            </li></> }
+            </li>
+            <li>
+              <Link to='my-orders'>
+              <i class="bi bi-box-seam-fill" />
+              <span className="count">{userOrder?.length}</span>
+              </Link>
+            </li>
+            </> }
             
             {user.isUserLogedIn || user.isSellerLogedIn ? (
               <li style={{background:""}}>
                 <p style={{fontWeight:"600", fontSize:'20px'}}>
                   {user.userName}{" "}
-                    {user.isSellerLogedIn ?  <Link to='/order'><i className="bi bi-shop" /> {orders?.length}
+                    {user.isSellerLogedIn ?  <Link to='/order'>
+                    <i className="bi bi-shop" />
+                    <span className="count"> {orders?.length} </span>
                     </Link> : undefined }
                     
                   <button onClick={() => logout()} className="arrow-btn">

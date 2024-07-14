@@ -62,6 +62,7 @@ const ProductCard = ({ title, description, id, user_id, created_at, price, image
             src={image}
             alt={title}
           />
+          {/* <p>Hellooooo</p> */}
         </div>
         <div className="niharika" >
           <p className="product-name" style={{ fontWeight: "500", position: "relative", top: "-20px" }}>
@@ -84,7 +85,7 @@ const ProductCard = ({ title, description, id, user_id, created_at, price, image
               fontWeight: "400", position: "relative", top: "-50px"
             }}
           >
-            ${price}.00
+            ${price + (price*20/100)}.00
           </p>
         </div>
         <p className="card-text">Created At: {created_at}</p>

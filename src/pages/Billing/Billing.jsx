@@ -4,7 +4,7 @@ import { CartContext } from "../../context/context";
 import { Order } from "../../http/http";
 
 export default function Billing() {
-  const { user, cartProducts } = useContext(CartContext);
+  const { user, cartProducts, updateBilling, updateCart, setUserOrder } = useContext(CartContext);
   const navigate = useNavigate()
   if (!user.isUserLogedIn) {
     navigate('/');
@@ -57,14 +57,21 @@ export default function Billing() {
         info: Fdata,
         modeOfPayment: "COD"
       }
-      console.log(details)
+      
+      const isSended = await Order(details, 2);
 
-      // send the data to backend
-    }
-    const isSended = await Order(details, 2);
-    console.log(isSended);
+      console.log('isSended: ', isSended)
+      updateCart(1, "delete");
+
     if(isSended) {
+      setUserOrder(isSended?.userOrders);
       navigate(Fdata.modeOfPayment === 'prepaid' ? '/order' : '/success');
+    }
+    }
+    updateBilling(product, Fdata, "COD");
+    
+    if(Fdata.modeOfPayment === 'prepaid') {
+      navigate('/payment')
     }
 
   };

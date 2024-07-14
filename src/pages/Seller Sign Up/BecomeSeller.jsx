@@ -64,7 +64,6 @@ const BecomeSeller = () => {
   return (
     <div className="container-fluid">
       <h2 className="text-center">Vendor Registration</h2>
-      <Link to="/"> <span className="text-center"> Home</span></Link>
       <div className="container d-flex justify-content-center">
         <form onSubmit={handleFormData} className="form-control log-form" id='seller-signup'>
           <h3>Basic Info</h3>

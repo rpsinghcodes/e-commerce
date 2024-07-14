@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div className="container">
+  <div className="d-flex justify-content-evenly align-items-center">
     <Link className="navbar-brand" to="#">
         <Logo/>
     </Link>
@@ -17,7 +17,7 @@ const Header = () => {
         
       </ul>
     </div>
-    <Link to='/trackingorder'> <span className="bi bi-geo"></span>Tracking Order</Link>
+    <Link to='/trackingorder'> <span className="bi bi-geo"></span>Tracking Order</Link>    
   </div>
 </nav>
   )

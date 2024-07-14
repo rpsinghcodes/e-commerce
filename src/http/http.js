@@ -16,7 +16,7 @@ export async function fetchProducts() {
   }
 }
 
-export async  function  getUserCartProduct(token) {
+export async function getUserCartProduct(token) {
   try {
     const decodedData = jwtDecode(token);
     const user_id = decodedData.data[0].id;
@@ -25,21 +25,23 @@ export async  function  getUserCartProduct(token) {
         Authorization: `Bearer ${token}`,
       },
     };
-    const response = await axios.post("http://localhost:4000/cart", { user_id }, config);
+    const response = await axios.post(
+      "http://localhost:4000/cart",
+      { user_id },
+      config
+    );
     if (!response.data.products) {
       return [];
     } else {
       console.log(response.data.products);
       return response.data.products;
     }
-  }catch(err) {
-    console.log('err', err)
-    }
-   
+  } catch (err) {
+    console.log("err", err);
+  }
 }
 
-export async  function getUserWishListProducts(token) {
-  
+export async function getUserWishListProducts(token) {
   try {
     const decodedData = jwtDecode(token);
     const user_id = decodedData.data[0].id;
@@ -48,7 +50,11 @@ export async  function getUserWishListProducts(token) {
         Authorization: `Bearer ${token}`,
       },
     };
-    const response = await axios.post("http://localhost:4000/wishlist", { user_id }, config);
+    const response = await axios.post(
+      "http://localhost:4000/wishlist",
+      { user_id },
+      config
+    );
 
     if (!response.data.products) {
       return [];
@@ -56,11 +62,10 @@ export async  function getUserWishListProducts(token) {
       console.log(response.data.products);
       return response.data.products;
     }
-  }catch(err) {
-    console.log('err', err);
+  } catch (err) {
+    console.log("err", err);
     return [];
   }
-  
 }
 
 export async function fetchSellerProducts(name) {
@@ -225,15 +230,17 @@ export async function updateUserCart(product_id, update) {
         },
       };
 
-      const response = await axios.post("http://localhost:4000/add-to-cart",
-      { user_id, product_id, update },
-      config);
-      if(response?.data?.success) {
+      const response = await axios.post(
+        "http://localhost:4000/add-to-cart",
+        { user_id, product_id, update },
+        config
+      );
+      if (response?.data?.success) {
         return {
-            success: true,
-            message: response?.data?.message,
-            updatedCart: response?.data?.updatedCart
-        }
+          success: true,
+          message: response?.data?.message,
+          updatedCart: response?.data?.updatedCart,
+        };
       }
     } else {
       return {
@@ -242,18 +249,18 @@ export async function updateUserCart(product_id, update) {
       };
     }
   } catch (err) {
-    console.log(err); 
+    console.log(err);
     return {
-        success: false,
-        message: "Something went wrong."
-    }
+      success: false,
+      message: "Something went wrong.",
+    };
   }
 }
 
 export async function updateWishList(product) {
   try {
     const token = getCookie("token");
-    if(token) {
+    if (token) {
       const tokenData = jwtDecode(token);
       const config = {
         headers: {
@@ -266,23 +273,27 @@ export async function updateWishList(product) {
         product_id: product.id,
       };
 
-      const response = await axios.post("http://localhost:4000/add-to-whishlist", toSend, config)
-      console.log('response: ', response);
-      if(response?.data?.success) {
-        console.log('returning anything yess')
+      const response = await axios.post(
+        "http://localhost:4000/add-to-whishlist",
+        toSend,
+        config
+      );
+      console.log("response: ", response);
+      if (response?.data?.success) {
+        console.log("returning anything yess");
         return {
           success: true,
           message: response?.data?.message,
           updatedWishList: response?.data?.updatedWishList,
-        }
+        };
       }
     }
-  }catch(err) {
+  } catch (err) {
     console.log(err);
     return {
       success: false,
-      message: "Something went wrong."
-  }
+      message: "Something went wrong.",
+    };
   }
 }
 
@@ -295,26 +306,29 @@ export async function fetchdeleteProduct(id, user_id) {
       },
     };
 
-    const response = await axios.post("http://localhost:4000/deleteproduct", { id, user_id }, config);
-    if(response?.data?.success) {
+    const response = await axios.post(
+      "http://localhost:4000/deleteproduct",
+      { id, user_id },
+      config
+    );
+    if (response?.data?.success) {
       return {
         success: true,
         message: response?.data?.message,
         sellerProducts: response?.data?.updatedSellerProducts,
-        updatedProducts: response?.data?.data
-      }
+        updatedProducts: response?.data?.data,
+      };
     }
-  }catch (err) {
-    console.log(err); 
+  } catch (err) {
+    console.log(err);
     return {
-        success: false,
-        message: "Something went wrong."
-    }
+      success: false,
+      message: "Something went wrong.",
+    };
   }
-  
 }
 
-export async function Order(data, user_id) {
+export async function Order(data) {
   try {
     const token = getCookie("token");
     const config = {
@@ -323,38 +337,120 @@ export async function Order(data, user_id) {
       },
     };
 
-    const response = await axios.post("http://localhost:4000/order", { data, user_id }, config);
-    if(response?.data?.success) {
-      
+    const response = await axios.post(
+      "http://localhost:4000/order",
+      { data },
+      config
+    );
+
+    if (response?.data?.success) {
       return {
-        success: true
-      }
+        success: true,
+        userOrders: response?.data?.userOrders
+      };
     }
-  }catch (err) {
-    console.log(err); 
+  } catch (err) {
+    console.log(err);
     return {
-        success: false,
-        message: "Something went wrong."
-    }
+      success: false,
+      message: "Something went wrong.",
+    };
   }
-  
 }
 
 export async function getOrder(seller_id) {
   try {
     const token = getCookie("token");
-    const response = await axios.get(`http://localhost:4000/order/token/${token}/seller_id/${seller_id}`);
-    if(response?.data?.success) {
+    const response = await axios.get(
+      `http://localhost:4000/order/token/${token}/seller_id/${seller_id}`
+    );
+    if (response?.data?.success) {
       return {
         success: true,
-        data: response?.data?.data
-      }
+        data: response?.data?.data,
+      };
     }
-  }catch(error) {
+  } catch (error) {
     console.log(error);
     return {
       success: false,
-      message: "Something went wrong."
+      message: "Something went wrong.",
+    };
+  }
+}
+
+export async function getUserOrder() {
+  try {
+    const token = getCookie("token");
+    const response = await axios.get(`http://localhost:4000/my-order/${token}`);
+    console.log('response.data: ', response.data); // No need for optional chaining here
+
+    if (response.data.success) {
+      return {
+        success: response.data.success,
+        data: response.data.data,
+      };
+    } else {
+      return {
+        success: false,
+        message: response.data.message || "Failed to fetch order data.",
+        data: []
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching user order:', error); // Provide more detailed error logging
+    return {
+      success: false,
+      message: "Something went wrong.",
+      data: []
+    };
+  }
+}
+
+export async function trackOrder(orderId, mobileNumber) {
+  try {
+    const response = await axios.get(`http://localhost:4000/track-order/${orderId}/${mobileNumber}`);
+    if(response?.data?.success) {
+      return {
+        success: response.data.success,
+        message: response.data.message
+      }
+    }
+  }catch(err) {
+    console.log(err);
+    return {
+      success: false,
+      message: "Please try again later."
+    }
+  }
+}
+
+
+export async function updateOrderStatus(orderId) {
+  try {
+    console.log(orderId);
+    const token = getCookie("token");    
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`, // Include user ID from JWT token in the Authorization header
+        },
+      };
+      const response = await axios.post(
+        "http://localhost:4000/update-order",
+        {orderId},
+        config);
+        console.log(response);
+        if(response?.data?.success) {
+          return {
+            success: true,
+            data: response?.data?.data
+          }
+        }
+  }catch(err) {
+    console.log(err);
+    return {
+      success: false,
+      message: "Something Went Wrong"
     }
   }
 }

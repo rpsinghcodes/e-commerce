@@ -37,7 +37,9 @@
 }
 
 .bi-cart-fill,
-.bi-heart-fill {
+.bi-heart-fill,
+.bi-box-seam-fill,
+.bi-shop {
   font-size: 27px;
   position: relative;
   top:0;

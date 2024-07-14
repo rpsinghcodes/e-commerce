@@ -4,9 +4,11 @@ import {  toast } from "react-toastify";
 
 import { CartContext } from "../../context/context";
 import "./payment.css";
+import { Order } from "../../http/http";
 
 export default function Payment() {
-  const {user} = useContext(CartContext)
+  const {user, billing, updateCart, setUserOrder} = useContext(CartContext)
+
 
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
@@ -21,14 +23,27 @@ export default function Payment() {
   }, [user, navigate]);
   
 
-  const handleSubmit = (e) => {    
+  const handleSubmit = async (e) => { 
+       
     e.preventDefault();
 
     if(user.length === 0 && expiryDate.length === 0 && expiryDate.length === 0 && cvv.length === 0 && cardHolder.length === 0 ){
       toast.error("Fill all the fields.")
     } else {
-      toast.success("Your Order placed..");
-      navigate('/')
+
+      billing.modeOfPayment = 'Prepaid';
+
+      const isSended = await Order(billing, 2);
+
+      updateCart(1, "delete");
+
+      if(isSended) {
+        setUserOrder(isSended.userOrders);
+        toast.success("Your Order placed..");
+        navigate('/success');
+      }
+      
+      // navigate('/')
     }
     // Handle payment processing logic here
     // console.log("Payment Details:", {

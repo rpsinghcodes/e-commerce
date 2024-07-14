@@ -22,11 +22,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 /* import './logo.css'; */
 
 const Logo = () => {
-  const logoImg = "https://safecart.bytesed.com/assets/uploads/media-uploader/logo1698825016.webp";
+  const logoImg = "my-cart.png";
   return (
-    <div className='d-flex justify-content-center align-items-center logo'>
+    <div className='d-flex justify-content-center align-items-center logo' >
       <Link to='/'>
-        <img src={logoImg} alt="SafeCart" className="img-fluid w-50" />
+        <img src={logoImg} alt="SafeCart" className='image-fluid' />
       </Link>
     </div>
   );

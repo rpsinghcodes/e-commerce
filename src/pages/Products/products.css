@@ -57,8 +57,7 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 5px 0px 10px 0px;
-
+  box-shadow: 4px 5px 16px -8px;
   background-color: #fff;
 }
 
