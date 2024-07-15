@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
    
     <nav className="navbar navbar-expand-lg navbar-warning bg-light">
-    <div className="container-fluid">
+    <div className="container-fluid ">
     
       <div>
       
@@ -22,46 +22,22 @@ const Navbar = () => {
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarNavDropdown">
+      <div className="collapse navbar-collapse d-flex justify-content-between p-3" id="navbarNavDropdown">
         <div className="d-lg-none">
         <SearchBar/>
         </div>
         <ul className="navbar-nav">
       
           <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle text-dark" to="/home" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <Link className="nav-link text-dark" to="/">
               Home Page
             </Link>
-            <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><Link className="dropdown-item" to="/">Home List</Link></li>
-            </ul>
+            
+            
           </li>
           <li className="nav-item">
             <Link className="nav-link text-dark" aria-current="page" to="/about">About</Link>
             </li>
-
-            <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle text-dark" to="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Blog
-            </Link>
-            <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><Link className="dropdown-item" href="/blog">Grid List</Link></li>
-            </ul>
-          </li>
-
-          <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle text-dark" to="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Shop Page
-            </Link>
-            <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-              <li><Link className="dropdown-item" href="/">Shop Here</Link></li>
-              
-            </ul>
-          </li>
-          <li>
-          <Link className="nav-link" aria-current="page" to="/categories">Categories</Link>
-          </li>
            
         <li>
           <Link className="nav-link" aria-current="page" to="/contact">Contact</Link>

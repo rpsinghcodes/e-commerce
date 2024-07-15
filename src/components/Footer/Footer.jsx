@@ -4,7 +4,6 @@ const Footer = () => {
   return (
     <footer className="mt-5 container">
       <div className="footer-container">
-        {/* footer-top start */}
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-4 counter_item text-center">
@@ -73,8 +72,7 @@ const Footer = () => {
             <div className="footer-links  col-lg-3 bottom mt-3">
               <ul>
                 <p style={{ fontWeight: "600", fontSize:"18px" }}>Helpful Links</p>
-                <p style ={{fontSize:"16px", fontWeight:"500"}}>Home</p>
-                <p style ={{fontSize:"16px", fontWeight:"500"}}>Blog</p>
+                <p style ={{fontSize:"16px", fontWeight:"500"}}> Blog</p>
                 <p style ={{fontSize:"16px", fontWeight:"500"}}>Contact</p>
                 <p style ={{fontSize:"16px", fontWeight:"500"}}>Shop Page</p>
               </ul>

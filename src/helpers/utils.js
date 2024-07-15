@@ -76,10 +76,4 @@ export function getStringSize(string) {
   // Convert KB to MB
   const megabytes = kilobytes / 1024;
   return megabytes
-
-  // return {
-  //     bytes: byteSize,
-  //     kilobytes: kilobytes.toFixed(2), // Round to 2 decimal places
-  //     megabytes: megabytes.toFixed(2) // Round to 2 decimal places
-  // };
 }

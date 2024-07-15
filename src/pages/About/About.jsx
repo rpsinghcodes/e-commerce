@@ -1,19 +1,3 @@
-/* import AboutCarousel from '../../components/AboutCarousel/AboutCarousel'
-import Footer from '../../components/Footer/Footer';
-import "./about.css";
-
-const About = () => {
-  return (
-    <>
-   
-     
-    </>
-  );
-};
-
-export default About; */
-
-
 import Footer from '../../components/Footer/Footer';
 
 

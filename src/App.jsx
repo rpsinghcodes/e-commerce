@@ -65,16 +65,3 @@ const App = () => {
 
 export default App;
 
-/* import React from 'react'
-import "bootstrap/dist/css/bootstrap.min.css";
-import NavbarComponent from './components/Navbar/NavbarComponent'
-
-const App = () => {
-  return (
-    <div>
-      <NavbarComponent/>
-    </div>
-  )
-}
-
-export default App */

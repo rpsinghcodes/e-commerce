@@ -11,45 +11,17 @@ export default function Billing() {
   }
   const handleForm = async (event) => {
     event.preventDefault();
-    // console.log('cartProducts: ', cartProducts);
-    console.log(cartProducts);
+    
+    
     const product =  cartProducts.map(products => (
       {product_id: products.id, quantity: products.quantity, seller_id: products.seller_id, product_name: products.title, price: products.price }
-      // details.push({orders: [{product_id: products.id, quantity: products.quantity, seller_id: products.seller_id}]})
+     
     ))
 
-    // console.log('details: ', details);
-
-    // send seller_id, product_id, quantity and userdetails that provided in this component
-    // data should be in such manner 
-
-    /*
-    what currently i have :
-    [
-    {...}
-    ]
-
-    result that i want: 
-    [orders: [{
-      product_id: 2,
-      seller_id: 4,
-      quantity: 2,
-    }, {
-    product_id: 2,
-      seller_id: 4,
-      quantity: 2
-    }],
-    address: {name:'', number: ''},
-    modeOfPayment: paid/unpaid,
-    ]
-
-    */
 
     const fd = new FormData(event.target);
     const Fdata = Object.fromEntries(fd.entries());
-    // console.log(Fdata);
-    // details.push(Fdata);
-    // console.log(details);
+   
     let details;
     if(Fdata.modeOfPayment !== 'prepaid') {
       details = {

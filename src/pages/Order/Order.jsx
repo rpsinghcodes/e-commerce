@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function Order() {
   const { orders, user, products, setOrder } = useContext(CartContext);
   const navigate = useNavigate();
-  console.log(orders);
+  
   const imgAndDescription = {};
   orders.forEach((order) => {
     const product = products.find(
@@ -22,11 +22,11 @@ export default function Order() {
   });
   const updateOrder = async (orderId) => {
     const data = await updateOrderStatus(orderId);
+
     if(data.success) {
       toast.success('Order Shipped Succesfully.')
       setOrder(data.data);
     }
-    console.log(data);
   }
 
   if (!user.isSellerLogedIn) {

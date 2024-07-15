@@ -43,15 +43,8 @@ export default function Payment() {
         navigate('/success');
       }
       
-      // navigate('/')
+     
     }
-    // Handle payment processing logic here
-    // console.log("Payment Details:", {
-    //   cardNumber,
-    //   expiryDate,
-    //   cvv,
-    //   cardHolder,
-    // });
   };
 
 

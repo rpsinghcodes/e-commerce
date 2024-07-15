@@ -66,9 +66,6 @@ return <div className="container">
                style ={{position:"relative", top:"-60px"}} >
                   Add to Cart
                 </button> }
-               {/*  <button  style={{marginLeft:'41px', position:"relative", top:"-60px"}}className="product-card-btn-icon" >
-                  <i className="bi bi-repeat"></i>
-                </button> */}
                 {user.isSellerLogedIn ? undefined :  <button
                   className="product-card-btn-icon"
                   onClick={() => addToWishList(item)}
