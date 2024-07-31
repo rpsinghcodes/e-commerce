@@ -59,10 +59,10 @@ const Login = () => {
       <form action="" className="form-control log-form" onSubmit={handleLogin}>
       {alertMessage?.userLoginError !== '' && <p style={{color: "red"}}> {alertMessage?.userLoginError} </p>}
         <h3>Sign In</h3>
-        <label htmlFor="">Email Or User Name</label>
+        <label htmlFor="">Email</label>
         <input
           type="text"
-          placeholder="Email Or UserName"
+          placeholder="Email"
           name="email"
           onChange={handleInputChange}
           

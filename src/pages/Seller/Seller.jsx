@@ -17,9 +17,9 @@ export default function Seller() {
       <h1 style ={{backgroundColor:"#f7f7f7", textAlign:"center", padding:"30px"}}>Your Products</h1>
       <div className="container">
         <div className="row">
-          {sellerProducts?.length === 0 && <p>Loading</p>}
+          {sellerProducts?.length === 0 && <p>No Products Found</p>}
           {sellerProducts?.map((item) => (
-            <ProductCard key={item.id} {...item} deleteProduct={deleteProduct}/>
+            <ProductCard key={item.seller_id} {...item} deleteProduct={deleteProduct}/>
           ))}
         </div>
       </div>

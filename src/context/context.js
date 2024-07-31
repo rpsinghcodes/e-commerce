@@ -101,7 +101,7 @@ export default function CartProvider({ children }) {
         // Setting user state to seller.
         const decodedData = jwtDecode(token);
         const name = decodedData?.data[0]?.seller_name;
-        const seller_id = decodedData?.data[0]?.id;
+        const seller_id = decodedData?.data[0]?.seller_id;
         setUser({
           isSellerLogedIn: true,
           userName: name,
@@ -285,7 +285,7 @@ export default function CartProvider({ children }) {
   const editProduct = async (data) => {
     const token = getCookie("token");
     const sellerData = jwtDecode(token);
-    data.user_id = sellerData?.data[0]?.id; // seller id
+    data.user_id = sellerData?.data[0]?.seller_id; // seller id
 
     const config = {
       headers: {
@@ -311,8 +311,8 @@ export default function CartProvider({ children }) {
   };
 
   // Methods for seller
-  const deleteProduct = async (id, user_id) => {
-    const data = await fetchdeleteProduct(id, user_id);
+  const deleteProduct = async (id, seller_id) => {
+    const data = await fetchdeleteProduct(id, seller_id);
     if (data.success) {
       toast.success(data?.message);
       setSellerProducts(data?.sellerProducts);

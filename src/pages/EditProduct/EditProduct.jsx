@@ -35,8 +35,10 @@ export default function EditProduct() {
     reader.readAsDataURL(file);
   }
   }
+  console.log('sellerProducts: ', sellerProducts);
   useEffect(() => {
     const filteredProduct = sellerProducts.find(p => p.id === parseInt(id));
+    console.log('filteredProduct: ', filteredProduct);
     setDefaultData(filteredProduct)
   }, [id, sellerProducts])
 
@@ -46,7 +48,8 @@ export default function EditProduct() {
     const data = Object.fromEntries(fd.entries());
     const token = getCookie('token');
     const sellerData = jwtDecode(token);
-    data.user_id = sellerData.data[0].id;
+    console.log('sellerData: ', sellerData);
+    data.seller_id = sellerData.data[0].seller_id;
     data.id = id;
     data.sellerName = user.userName
 

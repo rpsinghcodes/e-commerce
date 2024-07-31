@@ -297,7 +297,7 @@ export async function updateWishList(product) {
   }
 }
 
-export async function fetchdeleteProduct(id, user_id) {
+export async function fetchdeleteProduct(id, seller_id) {
   try {
     const token = getCookie("token");
     const config = {
@@ -308,7 +308,7 @@ export async function fetchdeleteProduct(id, user_id) {
 
     const response = await axios.post(
       "http://localhost:4000/deleteproduct",
-      { id, user_id },
+      { id, seller_id },
       config
     );
     if (response?.data?.success) {

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
 const {products, addToCart, addToWishList, user} =  useContext(CartContext);
+console.log(products);
 
 /* const dummydata = [
   {
@@ -51,6 +52,7 @@ const {products, addToCart, addToWishList, user} =  useContext(CartContext);
       <div>
         <div className="container">
           <div className="row">
+            {products.length === 0 && "No products found." }
           {products?.map((item, id) => {
           return (
             <div key={id} className="col-lg-3">
@@ -68,7 +70,7 @@ const {products, addToCart, addToWishList, user} =  useContext(CartContext);
                   {" "}
                   {item.title}
                 </p>
-                <p style ={{textAlign:"center", position:"relative", top:"-20px"}}>{item.description}</p>
+                <p style ={{textAlign:"center", position:"relative", top:"-20px"}}>{(item.description).substring(0,30)}...</p>
                 
                 <br />
                 <p className="product-name" style={{ color: "#0088dd", textAlign:'center', position:"relative", top:"-50px" }}>

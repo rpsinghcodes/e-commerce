@@ -6,13 +6,13 @@ import Products from '../Products/Products';
 import Categories from '../../components/Categories/Categories';
 import Footer from '../../components/Footer/Footer';
 
-const Home = ( {handleAddProduct, handleWishList, data, setData}) => {
+const Home = () => {
   return (
     <div>
     <Cards/>
     <Carousel/>
-    <Products  handleAddProduct={handleAddProduct}
-              handleWishList={handleWishList} data={data} setData={setData}/>
+
+    <Products/>
               
     <Categories/>
     <Footer/>
