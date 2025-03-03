@@ -28,6 +28,8 @@ import {
   getUserOrder,
 } from "../http/http";
 
+const API = process.env.REACT_APP_API
+
 export const CartContext = createContext({
   login: (userType, email, password) => {},
   userRegistration: (event) => {},
@@ -294,7 +296,7 @@ export default function CartProvider({ children }) {
     };
 
     await axios
-      .post("http://localhost:4000/addproduct", data, config)
+      .post(API+"/addproduct", data, config)
       .then((response) => {
         console.log(response?.data);
         setSellerProducts(

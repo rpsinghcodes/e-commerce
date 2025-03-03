@@ -2,9 +2,11 @@ import axios from "axios";
 import { getCookie } from "../helpers/utils";
 import { jwtDecode } from "jwt-decode";
 
+const API = process.env.REACT_APP_API
+
 export async function fetchProducts() {
   try {
-    const response = await axios.get("http://localhost:4000");
+    const response = await axios.get(API);
     if (response.status === 200) {
       return response?.data?.data;
     } else {
@@ -26,7 +28,7 @@ export async function getUserCartProduct(token) {
       },
     };
     const response = await axios.post(
-      "http://localhost:4000/cart",
+      API+"/cart",
       { user_id },
       config
     );
@@ -51,7 +53,7 @@ export async function getUserWishListProducts(token) {
       },
     };
     const response = await axios.post(
-      "http://localhost:4000/wishlist",
+      API+"/wishlist",
       { user_id },
       config
     );
@@ -70,7 +72,7 @@ export async function getUserWishListProducts(token) {
 
 export async function fetchSellerProducts(name) {
   try {
-    const response = await axios.get(`http://localhost:4000/productby/${name}`);
+    const response = await axios.get(`${API}/productby/${name}`);
 
     if (response.status === 200) {
       return response?.data?.productDetail;
@@ -87,10 +89,10 @@ export async function fetchUserLogin(email, password, userType) {
   try {
     let path;
     if (userType === "buyer") {
-      path = `http://localhost:4000/login`;
+      path = `${API}/login`;
     }
     if (userType === "seller") {
-      path = `http://localhost:4000/seller-login`;
+      path = `${API}/seller-login`;
     }
     const response = await axios.post(path, { email, password });
     console.log(response);
@@ -115,7 +117,7 @@ export async function fetchUserLogin(email, password, userType) {
 
 export async function signup(data) {
   try {
-    const response = await axios.post("http://localhost:4000/signup", data);
+    const response = await axios.post(API+"/signup", data);
     if (response?.data?.success) {
       return {
         success: response?.data?.success,
@@ -151,7 +153,7 @@ export async function postAddToCart(data) {
         product_id: data.id,
       };
       const response = await axios.post(
-        "http://localhost:4000/add-to-cart",
+        API+"/add-to-cart",
         toSend,
         config
       );
@@ -192,7 +194,7 @@ export async function deleteWishListProduct(product_id) {
       };
 
       const response = await axios.post(
-        "http://localhost:4000/delete-wishlist",
+        API+"/delete-wishlist",
         { user_id, product_id },
         config
       );
@@ -231,7 +233,7 @@ export async function updateUserCart(product_id, update) {
       };
 
       const response = await axios.post(
-        "http://localhost:4000/add-to-cart",
+        API+"/add-to-cart",
         { user_id, product_id, update },
         config
       );
@@ -274,7 +276,7 @@ export async function updateWishList(product) {
       };
 
       const response = await axios.post(
-        "http://localhost:4000/add-to-whishlist",
+        API+"/add-to-whishlist",
         toSend,
         config
       );
@@ -307,7 +309,7 @@ export async function fetchdeleteProduct(id, seller_id) {
     };
 
     const response = await axios.post(
-      "http://localhost:4000/deleteproduct",
+      API+"/deleteproduct",
       { id, seller_id },
       config
     );
@@ -338,7 +340,7 @@ export async function Order(data) {
     };
 
     const response = await axios.post(
-      "http://localhost:4000/order",
+      API+"/order",
       { data },
       config
     );
@@ -362,7 +364,7 @@ export async function getOrder(seller_id) {
   try {
     const token = getCookie("token");
     const response = await axios.get(
-      `http://localhost:4000/order/token/${token}/seller_id/${seller_id}`
+      `${API}/order/token/${token}/seller_id/${seller_id}`
     );
     if (response?.data?.success) {
       return {
@@ -382,7 +384,7 @@ export async function getOrder(seller_id) {
 export async function getUserOrder() {
   try {
     const token = getCookie("token");
-    const response = await axios.get(`http://localhost:4000/my-order/${token}`);
+    const response = await axios.get(`${API}/my-order/${token}`);
     console.log('response.data: ', response.data); // No need for optional chaining here
 
     if (response.data.success) {
@@ -409,7 +411,7 @@ export async function getUserOrder() {
 
 export async function trackOrder(orderId, mobileNumber) {
   try {
-    const response = await axios.get(`http://localhost:4000/track-order/${orderId}/${mobileNumber}`);
+    const response = await axios.get(`${API}/track-order/${orderId}/${mobileNumber}`);
     if(response?.data?.success) {
       return {
         success: response.data.success,
@@ -436,7 +438,7 @@ export async function updateOrderStatus(orderId) {
         },
       };
       const response = await axios.post(
-        "http://localhost:4000/update-order",
+        API+"/update-order",
         {orderId},
         config);
         console.log(response);
