@@ -2,7 +2,7 @@ import axios from "axios";
 import { getCookie } from "../helpers/utils";
 import { jwtDecode } from "jwt-decode";
 
-const API = process.env.REACT_APP_API
+const API = process.env.REACT_APP_API || "http://localhost:4000"
 
 export async function fetchProducts() {
   try {
