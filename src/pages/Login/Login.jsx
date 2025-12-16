@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import { CartContext } from "../../context/context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
 
@@ -79,6 +79,11 @@ const Login = () => {
         {errors.password && <span style={{color:"red"}}>Write Password</span>}
         
         <button>Sign In</button>
+        <div className="mt-3 text-center">
+          <Link to="/sellerlogin" className="text-decoration-none text-secondary">
+            Are you a seller? <span className="text-primary">Login here</span>
+          </Link>
+        </div>
       </form>
       </div>
      

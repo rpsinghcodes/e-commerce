@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+// import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -7,7 +7,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import Cart from "./pages/Cart/Cart.jsx";
 import WishList from "./pages/WishList/WishList.jsx";
 import TopBar from "./components/TopBar/TopBar";
-import Header from "./components/Header/Header";
+
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -33,7 +33,7 @@ const App = () => {
   return (
     <>
       <TopBar />
-      <Header />
+
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -1,5 +1,5 @@
 import React from 'react'
-import './home.css';
+
 import Cards from '../../components/Cards/Cards';
 import Carousel from '../../components/Carousel/Carousel';
 import Products from '../Products/Products';
@@ -9,7 +9,7 @@ import Footer from '../../components/Footer/Footer';
 const Home = () => {
   return (
     <div>
-    <Cards/>
+    {/* <Cards/> */}
     <Carousel/>
 
     <Products/>
